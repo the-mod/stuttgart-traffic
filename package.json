@@ -1,0 +1,16 @@
+{
+  "name": "stuttgart-traffic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/the-mod/stuttgart-traffic",
+  "author": "the-mod",
+  "license": "ISC",
+  "dependencies": {
+    "browser-screen-grab": "git+https://github.com/the-mod/browser-screen-grab.git"
+  }
+}
