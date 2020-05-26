@@ -8,8 +8,11 @@ It is using basically [Puppeteer](https://github.com/puppeteer/puppeteer) via [b
 Use scripts in `postproduction` directory to put a Header with Timestamp to every recorded Screenshot.
 
 ## Example
-
+Captured Screenshot:
 ![Stuttart Traffic](./assets/stuttgart-20200524100842.png "Stuttgart Traffic")
+
+After postprocessing with Header Tile and counter in the filename:
+![Stuttart Traffic](./assets/marked-0.png "Stuttgart Traffic")
 
 ## Setup App
 

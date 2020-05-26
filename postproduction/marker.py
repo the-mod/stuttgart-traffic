@@ -3,13 +3,13 @@ import datetime as dt
 from string import Template
 import sys
 
-directory = "./pics"
+cmdTemplate = Template("magick convert $file -pointsize 32 -background Orange label:\"$timeStamp\" +swap -gravity Center -append $outputFileName")
 
-cmdTemplate = Template("magick convert $file -pointsize 32 -background Orange label:$timeStamp +swap -gravity Center -append $outputFileName")
-
-def markImage(index, timeStamp, fileName):
-	outputFileName = "./pics/marked-" + str(index) +".png"
-	fileName = "./pics/" + fileName
+sourceTimeFormat = '%Y%m%d%H%M%S'
+targetTimeFormat = '%d %B %Y - %H:%M:%S'
+def markImage(directory, index, timeStamp, fileName):
+	outputFileName = directory + "/marked-" + str(index) +".png"
+	fileName = directory + "/" + fileName
 	cmd = cmdTemplate.substitute(file=fileName, timeStamp=timeStamp, outputFileName=outputFileName)
 	print(cmd)
 	os.system(cmd)
@@ -19,8 +19,10 @@ def getTimeStamp(fileName):
 	lastPart = parts[-1]
 	split = lastPart.split(".")
 	timeStampString = split[0]
-	timeStamp = dt.datetime.strptime(timeStampString, '%Y%m%d%H%M%S')
-	formatted = timeStamp.isoformat()
+
+	timeStamp = dt.datetime.strptime(timeStampString, sourceTimeFormat)
+	#formatted = timeStamp.isoformat()
+	formatted = timeStamp.strftime(targetTimeFormat)
 	return formatted
 
 def walkFiles(path):
@@ -30,7 +32,7 @@ def walkFiles(path):
 			print(filename)
 			timeStamp = getTimeStamp(filename)
 			print(timeStamp)
-			markImage(index, timeStamp, filename)
+			markImage(path, index, timeStamp, filename)
 			continue
 		else:
 			continue
